@@ -1,6 +1,6 @@
 package com.cns.security.serviceImp;
 
-import java.nio.charset.StandardCharsets;
+
 import java.util.Base64;
 import java.util.Date;
 import java.util.HashMap;
@@ -20,10 +20,11 @@ public class JwtUtil {
 	private static final long EXPIRATION_TIME = 86400000; // 24 hours
 
 	public JwtUtil() {
-		String secreteString = "843567893696976453275974432697R634976R738467TR678T34865R6834R8763T478378637664538745673865783678548735687R3";
-		byte[] keyBytes = Base64.getDecoder().decode(secreteString.getBytes(StandardCharsets.UTF_8));
-		this.Key = new SecretKeySpec(keyBytes, "HmacSHA256");
+	    String secretString = "ODQzNTY3ODkzNjk2OTc2NDUzMjc1OTc0NDMyNjk3UjYzNDk3NlI3Mzg0NjdUUjY3OFQzNDg2NVI2ODM0Ujg3NjNUNDc4Mzc4NjM3NjY0NTM4NzQ1NjczODY1NzgzNjc4NTQ4NzM1Njg3UjM=";
+	    byte[] keyBytes = Base64.getDecoder().decode(secretString); 
+	    this.Key = new SecretKeySpec(keyBytes, "HmacSHA256");
 	}
+
 
 	public String generateToken(UserDetails userDetails) {
 		return Jwts.builder().subject(userDetails.getUsername()).issuedAt(new Date(System.currentTimeMillis()))
